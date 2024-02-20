@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poké Archive</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <!-- Custom Font: Courier Prime -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="main-container">
+        <div class="main-header">
+            <h1>
+                <!-- Pokéball SVG -->
+                <img src="/images/pokeball.svg" alt="pokeball svg">
+                Welcome to Poké Archive!
+                <img src="/images/pokeball.svg" alt="pokeball svg">
+            </h1>
+            <p>You can search and get information about pokemons based on their name.</p>
+            <p>Moreover, you can get a random pokemon if you like!</p>
+        </div>
+        <hr>
+        <div class="main-buttons">
+            <div class="main-input">
+                <label for="name">Name: </label>
+                <input type="text" name="name" placeholder="Pokemon Name">
+                <form action="/search" method="get">
+                    <button type="submit" name="btnSearch">Search</button>
+                </form>
+                <form action="/random" method="get">
+                    <button type="submit" name="btnRandom">Random</button>
+                </form>
+        </div>
+    </div>
+</body>
+</html>
