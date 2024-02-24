@@ -6,7 +6,7 @@ body {
     background-color: #1D2C5E;
     margin: 0;
     padding: 0;
-    animation: changeBG 5s ease 0.5s infinite alternate;
+    animation: changeBG 8s ease 0.5s infinite alternate;
 }
 
 @keyframes changeBG {
@@ -61,6 +61,46 @@ button {
 button:hover {
     background-color: azure;
     color: #C7A008;
+}
+
+.pokemon-headers {
+    color: #FFCB05;
+}
+
+.ability {
+    display: inline-block;
+    padding: 10px 5px;
+    font-size: 1.2rem;
+    background-color: rgb(234, 32, 32);
+    border: 2px solid azure;
+    border-radius: 20%;
+}
+
+.type {
+    display: inline-block;
+    padding: 10px 5px;
+    font-size: 1.2rem;
+    background-color: rgb(196, 194, 88);
+    border: 2px solid azure;
+    border-radius: 20%;
+}
+
+.isHidden {
+    font-weight: bold;
+    background-color: rgb(236, 25, 112);
+}
+
+.pokemon-found {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.note {
+    margin-bottom: 0.6rem;
+}
+
+.btnReturn {
+    margin: 0;
 }
 
 

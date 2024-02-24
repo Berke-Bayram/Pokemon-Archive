@@ -11,29 +11,85 @@
     <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="main-container">
-        <div class="main-header">
-            <h1>
-                <!-- Pokéball SVG -->
-                <img src="/images/pokeball.svg" alt="pokeball svg">
-                Welcome to Poké Archive!
-                <img src="/images/pokeball.svg" alt="pokeball svg">
-            </h1>
-            <p>You can search and get information about pokemons based on their name.</p>
-            <p>Moreover, you can get a random pokemon if you like!</p>
-        </div>
-        <hr>
-        <div class="main-buttons">
-            <div class="main-input">
-                <label for="name">Name: </label>
-                <input type="text" name="name" placeholder="Pokemon Name">
-                <form action="/search" method="get">
-                    <button type="submit" name="btnSearch">Search</button>
+    <% if (locals.pokemon) { %>
+        <div class="main-container">
+            <div class="main-header">
+                <h1>
+                    <!-- Pokéball SVG -->
+                    <img src="/images/pokeball.svg" alt="pokeball svg">
+                    The Search Result for "<%= pokemon.name %>"
+                    <img src="/images/pokeball.svg" alt="pokeball svg">
+                </h1>
+            </div>
+            <hr>
+            <div class="pokemon-found">
+                <form action="/">
+                    <button class="btnReturn">Return to Main Page</button>
                 </form>
-                <form action="/random" method="get">
-                    <button type="submit" name="btnRandom">Random</button>
-                </form>
+                <h3><span class="pokemon-headers">Pokemon ID: </span><%= pokemon.id %></h3>
+                <h3><span class="pokemon-headers">Name: </span><%= pokemon.name %></h3>
+                <h3><span class="pokemon-headers">Types:</h3>
+                <% (pokemon.types).forEach(element => { %>
+                    <span class="type"><%= element.type.name %></span>
+                <% }); %>
+                <h3><span class="pokemon-headers">Weight (in kilograms): </span><%= pokemon.weight / 10 %></h3>
+                <h3><span class="pokemon-headers">Height (in meters): </span><%= pokemon.height / 10 %></h3>
+                <h3><span class="pokemon-headers">Abilities:</h3>
+                <h4 class="note">(Hidden abilities are displayed on a pink background.)</h4>
+                <% (pokemon.abilities).forEach(element => { %>
+                    <% if(element.is_hidden === true) { %>
+                        <span class="ability isHidden"><%= element.ability.name %></span>
+                    <% } else { %>
+                        <span class="ability"><%= element.ability.name %></span>
+                    <% } %>
+                <% }); %>
+                <h3><span class="pokemon-headers">Cries:</h3>
+                <h4 class="note">(A cry is a sound that identifies this Pokémon in the game.)</h4>
+                <audio controls>
+                    <source src="<%= pokemon.cries %>" type="audio/ogg">
+                </audio>
+            </div>
         </div>
-    </div>
+    <% } else if (locals.error) {%>
+        <div class="main-container">
+            <div class="main-header">
+                <h1>
+                    <!-- Sad Face SVG -->
+                    <img src="/images/sad.svg" alt="sad face svg">
+                    The Search Result: <%= error %>
+                    <img src="/images/sad.svg" alt="sad face svg">
+                </h1>
+                <form action="/">
+                    <button class="btnReturn">Return to Main Page</button>
+                </form>
+            </div>
+            <hr>
+        </div>
+    <% } else { %>
+        <div class="main-container">
+            <div class="main-header">
+                <h1>
+                    <!-- Pokéball SVG -->
+                    <img src="/images/pokeball.svg" alt="pokeball svg">
+                    Welcome to Poké Archive!
+                    <img src="/images/pokeball.svg" alt="pokeball svg">
+                </h1>
+                <p>You can search and get information about pokemons based on their name.</p>
+                <p>Moreover, you can get a random pokemon if you like!</p>
+            </div>
+            <hr>
+            <div class="main-buttons">
+                <div class="main-input">
+                    <label for="name">Name: </label>
+                    <form action="/search" method="post">
+                        <input type="text" name="pokemonName" placeholder="Pokemon Name" required>
+                        <button type="submit" name="btnSearch">Search</button>
+                    </form>
+                    <form action="/random" method="post">
+                        <button type="submit" name="btnRandom">Random</button>
+                    </form>
+            </div>
+        </div>
+    <% } %>
 </body>
 </html>
